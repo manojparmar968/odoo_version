@@ -1,0 +1,20 @@
+{
+    "name": "RazorPay",
+    "version": '19.0.0',
+    "category": "other/",
+    "license": "AGPL-3",
+    "summary": "RazorPay-Odoo Integration using REST API's AND Scheduler Action",
+    "author": "Manoj Parmar",
+    "maintainers": ["Manoj Parmar"],
+    "website": "www.abc.com",
+    "depends": [],
+    "data": [
+        # "security/ir.model.access.csv",
+        # "views/.xml",
+        # "report/.xml",
+        "data/multiple_cron.xml",
+    ],
+    "installable": True,
+    'auto_install': False,
+    "application": True,
+}
