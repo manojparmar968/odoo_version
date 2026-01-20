@@ -7,7 +7,7 @@ from odoo.exceptions import UserError
 class EstatePropertyType(models.Model):
     _name = 'estate.property.type'
     _description = 'Estate Property Type'
-    _order = "name"
+    _order = "sequence, name"
 
     sequence = fields.Integer("Sequence")
     name = fields.Char('Name', required=True, translate=True)

@@ -63,16 +63,7 @@ class EstatePropertyOffer(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        print("vals_list: ",vals_list)
         res = super().create(vals_list)
-        # rec = self.env['estate.property'].browse(vals_list[0]['property_id'])
-        # print(rec.offer_ids,rec.best_price)
-        # existing_offer = self.search([('property_id', '=', vals_list[0]['property_id'])], 
-        #     limit=1, order='create_date desc')
-        # print(existing_offer)
-        # for last_offer in rec.offer_ids:
-        #     print(last_offer,last_offer.price,)
-        # if rec:
-        #     rec.state = 'offer_received'
-        print()
+        if res.property_id and res.property_id.state == 'new':
+            res.property_id.state = 'offer_received'
         return res

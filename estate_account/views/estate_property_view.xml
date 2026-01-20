@@ -1,21 +1,40 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="estate_property_view_form" model="ir.ui.view">
+    <record id="estate_property_duplicate_list_view" model="ir.ui.view">
+        <field name="name">estate.property.list</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list string="Properties" decoration-success="state == 'offer_received' or state == 'offer_accepted'" decoration-muted="state == 'sold'">
+                <field name="name"/>
+                <field name="property_type_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="hide"/>
+                <field name="state" readonly="0"/>
+                <field name="postcode" optional="hide"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="date_availability" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="estate_property_duplicate_form_view" model="ir.ui.view">
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Properties">
                 <header>
                     <button name="action_property_sold" string="SOLD" type="object"  invisible="state in ('canceled', 'sold')"
-                        decoration-primary="state == 'offer_accepted'"/>
+                        />
                     <button name="action_property_cancel" string="CANCEL" type="object" class="oe_highlight" invisible="state in ('canceled', 'sold')"/>
                     <field name="active" invisible="True"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" options="{'clickable': '1'}" readonly="1"/>
                 </header>
-
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        
+                        <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" invisible="invoice_count == 0">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
                     </div>
                     <div class="oe_title">
                         <h1 class="mb32">
@@ -35,7 +54,6 @@
                             <field name="best_price"/>
                             <field name="selling_price"/>
                             <field name="create_date"/>
-                            <field name="mobile" placeholder="Enter 10-digit mobile number" />
                         </group>
                     </group>
                     <notebook>
@@ -53,7 +71,9 @@
                             </group>
                         </page>
                         <page string="Offers">
-                            <field name="offer_ids" readonly="state in ('offer_accepted','sold', 'canceled')"/>
+                            <field name="offer_ids" readonly="state in ('offer_accepted','sold', 'canceled')">
+                            
+                            </field>
                         </page>
                         <page string="OtherInfo">
                             <group>
@@ -63,34 +83,10 @@
                         </page>
                     </notebook>
                 </sheet>
-                <!-- Chatter -->
-                <chatter/>
             </form>
         </field>
     </record>
-    <!-- decoration-danger="move_sent_values == 'not_sent'"
-    decoration-info="state == 'draft'"
-    decoration-muted="state == 'cancel'"
-    decoration-warning="state == 'new'"
-    decoration-primary="state == 'sent'" -->
-    <record id="estate_property_view_tree_custom" model="ir.ui.view">
-        <field name="name">estate.property.list</field>
-        <field name="model">estate.property</field>
-        <field name="arch" type="xml">
-            <list string="Properties" decoration-success="state == 'offer_received' or state == 'offer_accepted'" decoration-bf="state == 'offer_accepted'" decoration-muted="state == 'sold'">
-                <field name="name"/>
-                <field name="property_type_id" options="{'no_open': True, 'no_create': True}"/>
-                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                <field name="postcode"/>
-                <field name="bedrooms"/>
-                <field name="living_area"/>
-                <field name="expected_price"/>
-                <field name="selling_price"/>
-                <field name="date_availability" optional="hide"/>
-            </list>
-        </field>
-    </record>
-    <record id="estate_property_kanban" model="ir.ui.view">
+    <record id="estate_property_duplicate_kanban" model="ir.ui.view">
         <field name="name">estate.property.view.kanban</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
@@ -116,50 +112,23 @@
             </kanban>
         </field>
     </record>
-    <record id="view_estate_property_filter" model="ir.ui.view">
-        <field name="name">estate.property.search</field>
-        <field name="model">estate.property</field>
-        <field name="arch" type="xml">
-            <search string="Search">
-                <filter string="Available" name="available" domain="[('state', '=', 'new')]" help="Show only new properties by default"/>
-                <field name="name"/>
-                <field name="postcode"/>
-                <field name="expected_price"/>
-                <field name="bedrooms"/>
-                <field name="living_area" filter_domain="[('living_area','>=',self)]"/>
-                <field name="facades"/>
-                <field name="create_date"/>
-                <field name="property_type_id"/>
-                <separator />
-                <!-- <filter string="Date Available" name="filter_date_availability" default_period="month"/> -->
-                <filter string="Creation Date" name="filter_creation_date" date="create_date" default_period="year"/>
-                <separator/>
-                <filter string="Inactive Properties" name="inactive" domain="[('active', '=', False)]"/>
-                <separator/>
-                <group>
-                    <filter string="Postcode" context="{'group_by':'postcode', 'residual_visible':True}" name="postcode"/>
-                    <separator orientation="vertical"/>
-                    <filter string="Creation Date" context="{'group_by':'create_date:month'}" name="month"/>
-                    <filter string="New &amp; Offer Received" name="propertyoffer" domain="[('state', 'in', ['new', 'offer_received'])]" context="{'group_by':'state'}"/>
-                </group>
-            </search>
-        </field>
-    </record>
-    
-    <record id="estate_property_action" model="ir.actions.act_window">
-        <field name="name">Properties</field>
+    <record id="estate_property_duplicate_action" model="ir.actions.act_window">
+        <field name="name">Duplicate Properties</field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">kanban,list,form</field>
-        <field name="search_view_id" ref="estate.view_estate_property_filter"/>
+        <field name="view_ids" eval="[(5, 0, 0), 
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('estate_property_duplicate_kanban')}),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('estate_property_duplicate_list_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('estate_property_duplicate_form_view')})]"
+        />
         <field name="context">{'search_default_available':1}</field>
+        <field name="search_view_id" ref="estate.view_estate_property_filter"/>
         <field name="help" type="html">
-          <p>
-            Define a new Property
-          </p><p>
-            Use lost reasons to explain why an opportunity is lost.
-          </p><p>
-            
-          </p>
+            <p class="o_view_nocontent_smiling_face">Define a new Property.</p>
+            <p>By New Properties.</p>
         </field>
     </record>
+    <menuitem id="duplicate_parent_menu" name="Duplicate View" parent="estate.real_estate_menu_root"/>
+    <menuitem id="menu_header_duplicate" name="Duplicate" parent="duplicate_parent_menu"/>
+    <menuitem id="duplicate_view_menu_action" name="Properties" parent="menu_header_duplicate" action="estate_property_duplicate_action"/>
 </odoo>

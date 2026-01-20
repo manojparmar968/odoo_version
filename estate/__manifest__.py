@@ -9,7 +9,7 @@
     'maintainer': 'Manoj PArmar',
     'company': 'Manoj PArmar',
     'website': 'https://www.google.com',
-    'depends': ['mail', 'purchase'],
+    'depends': ['base', 'mail', 'purchase'],
     'data': [
         'security/ir.model.access.csv',
         # 'report/paperformat.xml',
@@ -18,7 +18,7 @@
         'views/estate_property_offer_views.xml',
         'views/estate_property_type_views.xml',
         'views/estate_property_tag_views.xml',
-        
+        'views/res_users_views.xml',
         'views/estate_menus.xml',   
         # 'report/template.xml',
     ],

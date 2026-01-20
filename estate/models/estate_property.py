@@ -1,7 +1,8 @@
 from odoo import models, fields, api, _, SUPERUSER_ID
-from odoo.exceptions import UserError, AccessError
+from odoo.exceptions import UserError, AccessError, ValidationError
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
+import re
 
 direction = [
     ('north', 'North'), 
@@ -43,6 +44,7 @@ class EstateProperty(models.Model):
     offer_ids = fields.One2many('estate.property.offer', 'property_id', string='Offer')
     total_area = fields.Integer("Total Area (sqm)", compute="_compute_total_area", store=True)
     best_price = fields.Float("Best Price", compute="_compute_best_price", store=True)
+    mobile = fields.Char(string="Mobile Number", size=10)
 
     _expected_price_check = models.Constraint(
         'CHECK(expected_price > 0)',
@@ -53,6 +55,14 @@ class EstateProperty(models.Model):
         'CHECK(selling_price > 0)',
         'Selling Price should be positive.',
     )
+
+    @api.constrains('mobile')
+    def _check_mobile_10(self):
+        for record in self:
+            if record.mobile and not re.fullmatch(r'\d{10}', record.mobile):
+                raise ValidationError(
+                    "Mobile number must contain exactly 10 digits."
+                )
 
     @api.onchange('garden')
     def on_change_garden(self):
