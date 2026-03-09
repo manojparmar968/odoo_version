@@ -21,8 +21,12 @@
         'views/res_users_views.xml',
         'views/estate_menus.xml',   
         # 'report/template.xml',
+        'data/property_type_demo.xml',
     ],
-    'demo': [],
+    'demo': [
+        # 'data/.xml',
+        # 'data/.xml',
+    ],
     # 'images': ['static/description/'],
     # 'css': ['static/src/'],
     'installable': True,

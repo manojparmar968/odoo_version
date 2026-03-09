@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="daily_routine_checker_line_list_view" model="ir.ui.view">
+        <field name="name">daily.routine.checker.line.list</field>
+        <field name="model">daily.routine.checker.line</field>
+        <field name="arch" type="xml">
+            <list string="Routine List" editable="bottom" create="0" delete="0" >
+                <!-- decoration-success="routine_date == context_today().strftime('%Y-%m-%d')" 
+                decoration-danger="routine_date &lt; context_today() and (not drinking or not smoking or not study or not interview)" -->
+            
+                <field name="routine_date" />
+                <field name="smoking"  force_save="1"/>
+                <!-- <field name="smoking" readonly="routine_date != context_today().strftime('%Y-%m-%d')" force_save="1"/> -->
+                <field name="drinking" readonly="routine_date != context_today().strftime('%Y-%m-%d')" force_save="1"/>
+                <field name="study" readonly="routine_date != context_today().strftime('%Y-%m-%d')" force_save="1"/>
+                <field name="interview" readonly="routine_date != context_today().strftime('%Y-%m-%d')" force_save="1"/>
+                <field name="dry_fruits"/>
+                <field name="interview_value" groups="daily_routine_checker.group_routine_check_progress_manager,daily_routine_checker.group_routine_check_admin"/>
+                <field name="interview_progress" widget="progressbar"/>
+                <field name="odoo_certification" groups="daily_routine_checker.group_routine_check_progress_manager,daily_routine_checker.group_routine_check_admin"/>
+                <field name="odoo_certification_progress" widget="progressbar"/>
+                <field name="success"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_daily_routine_checker_line" model="ir.actions.act_window">
+        <field name="name">Daily Routine Checker Line</field>
+        <field name="res_model">daily.routine.checker.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">
+            [
+                ('routine_date', '&gt;=', context_today().strftime('%Y-%m-01')),
+                ('routine_date', '&lt;', (context_today() + relativedelta(months=1)).strftime('%Y-%m-01'))
+            ]
+           
+        </field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an Record
+            </p>
+        </field>
+    </record>
+</odoo>

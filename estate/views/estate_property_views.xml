@@ -94,7 +94,7 @@
         <field name="name">estate.property.view.kanban</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="property_type_id">
+            <kanban default_group_by="property_type_id" create="0" edit="0">
                 <templates>
                     <t t-name="card">
                         <field name="name" class="fw-bolder"/>

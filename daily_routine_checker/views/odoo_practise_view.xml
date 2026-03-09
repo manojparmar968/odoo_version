@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="odoo_practise_list_view" model="ir.ui.view">
+        <field name="name">odoo.practise.list</field>
+        <field name="model">odoo.practise</field>
+        <field name="arch" type="xml">
+            <list string="Odoo Practise" delete="false">
+                <field name="topic"/>
+                <field name="odoo_state"/>
+                <field name="functional"/>
+            </list>
+        </field>
+    </record>
+    <record id="odoo_practise_form_view" model="ir.ui.view">
+        <field name="name">odoo.practise.form</field>
+        <field name="model">odoo.practise</field>
+        <field name="arch" type="xml">
+            <form string="Odoo Practise" delete="0">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="topic"/>
+                            <field name="odoo_state"/>
+                            <field name="aws_state"/>
+                            <field name="functional"/>
+                            <field name="topic_id" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="topic_name"/>
+                        </group>
+                        <group>
+                            <field name="functional"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

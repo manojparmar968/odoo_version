@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="estate.property_type_01" model="estate.property.type">
+        <field name="sequence">1</field>
+        <field name="name">House</field>
+    </record>
+
+    <record id="estate.property_type_02" model="estate.property.type">
+        <field name="sequence">2</field>
+        <field name="name">Apartment</field>
+    </record>
+
+    <record id="estate.property_type_03" model="estate.property.type">
+        <field name="sequence">3</field>
+        <field name="name">Castle</field>
+    </record>
+
+</odoo>

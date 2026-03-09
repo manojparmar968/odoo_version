@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="daily_routine_checker.topic_01" model="topic">
+        <field name="sequence">1</field>
+        <field name="name">Flipkart Delivery Intgeration</field>
+    </record>
+
+    <record id="daily_routine_checker.topic_02" model="topic">
+        <field name="sequence">2</field>
+        <field name="name">Amazon Delivery Intgeration</field>
+    </record>
+
+    <record id="daily_routine_checker.topic_04" model="topic">
+        <field name="sequence">4</field>
+        <field name="name">CICD Pipelines</field>
+    </record>
+    <record id="daily_routine_checker.topic_05" model="topic">
+        <field name="sequence">5</field>
+        <field name="name">Rabbit MQ</field>
+    </record>
+    <record id="daily_routine_checker.topic_06" model="topic">
+        <field name="sequence">6</field>
+        <field name="name">PostgreSQL</field>
+    </record>
+    <record id="daily_routine_checker.topic_07" model="topic">
+        <field name="sequence">7</field>
+        <field name="name">Odoo ORM</field>
+    </record>
+    <record id="daily_routine_checker.topic_08" model="topic">
+        <field name="sequence">8</field>
+        <field name="name">Javascript</field>
+    </record>
+    <record id="daily_routine_checker.topic_09" model="topic">
+        <field name="sequence">9</field>
+        <field name="name">Docker</field>
+    </record>
+    <record id="daily_routine_checker.topic_10" model="topic">
+        <field name="sequence">10</field>
+        <field name="name">Kubernatives</field>
+    </record>
+    <record id="daily_routine_checker.topic_11" model="topic">
+        <field name="sequence">11</field>
+        <field name="name">Odoo Connectors</field>
+    </record>
+    <record id="daily_routine_checker.topic_12" model="topic">
+        <field name="sequence">12</field>
+        <field name="name">Shipping Intgeration</field>
+    </record>
+    <record id="daily_routine_checker.topic_13" model="topic">
+        <field name="sequence">13</field>
+        <field name="name">Kafka</field>
+    </record>
+</odoo>

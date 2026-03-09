@@ -1,0 +1,33 @@
+{
+    "name": "Daily Routine Checker",
+    "version": '1.0',
+    "category": "other/",
+    "license": "AGPL-3",
+    "summary": "Daily Routine Checker",
+    'description': 'Daily Routine Checker description',
+    "author": "Manoj Parmar",
+    "maintainers": ["Manoj Parmar"],
+    "website": "www.abc.com",
+    "depends": ['base', 'mail', 'contacts' ,'hr'],
+    "data": [
+        'security/res_groups.xml',
+        "security/ir.model.access.csv",
+        'security/ir_rules.xml',
+        
+        'security/ir_rules.xml',
+        'data/mail_template_data.xml',
+        
+        "views/daily_routine_checker_line_view.xml",
+        "views/daily_routine_checker_view.xml",
+        "views/mail_automation_view.xml",
+        "views/topic_view.xml",
+        "views/odoo_practise_view.xml",
+        "views/menu_view.xml",
+        # "report/.xml",
+        'data/ir_cron.xml',
+        'data/topic_demo.xml',
+    ],
+    "installable": True,
+    'auto_install': False,
+    "application": True,
+}

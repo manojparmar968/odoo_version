@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="routine_root_menu" name="Routine"/>
+
+    <menuitem id="daily_routine_dashboard_root_menu" name="Dash Board" parent="routine_root_menu"/>
+    <!-- <menuitem id="_model_action_menu" name="" parent="daily_routine_dashboard_root_menu" action=""/> -->
+
+    <menuitem id="daily_routine_root_menu" name="Daily Routine" parent="routine_root_menu"/>
+    <menuitem id="daily_routine_checker_model_action_menu" name="Daily Routine Checker" parent="daily_routine_root_menu" action="daily_routine_checker_action"/>
+
+    <menuitem id="daily_routine_mail_root_menu" name="Automation" parent="routine_root_menu"/>
+    <menuitem id="daily_routine_checker_mail_automation_model_action_menu" name="Mail Automation" parent="daily_routine_mail_root_menu" action="mail_automation_action"/>
+
+    <menuitem id="settings_root_menu" name="Settings" parent="routine_root_menu"/>
+    <menuitem id="topic_model_action_menu" name="Topic" parent="settings_root_menu" action="topic_action"/>
+</odoo>

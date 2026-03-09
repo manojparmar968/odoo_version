@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data ><!-- noupdate="1" -->
+        <record id="email_template_challenge_reminder_today" model="mail.template">
+            <field name="name">Challenge Reminder</field>
+            <field name="model_id" ref="model_daily_routine_checker"/>
+            <field name="subject">Don't break your streak!</field>
+            <field name="body_html" type="html">
+                <div style="font-family:Arial; padding:20px; background:#f5f7fa;">
+                    <h2 style="color:#875A7B;">
+                    🚀 Daily Challenge Reminder
+                    </h2>
+                    <p>Hello <t t-out="object.name or ''"></t>,</p>
+                    <p>You haven't completed today's challenge.</p>
+                    <div style="background:white; padding:15px; border-radius:8px;">
+                        <p>
+                            You missed your routine on 📅 Missed Date:
+                            <strong>
+                                <t t-foreach="object.routine_line_ids" t-as="line">
+                                    <t t-if="line.routine_date == datetime.date.today()">
+                                        <t t-out="line.routine_date"/>
+                                    </t>
+                                </t>
+                            </strong>.
+                        </p>
+                        <p>
+                            🔥 Current Missed Streak: 
+                            <strong><t t-out="object.missed_streak or 0"/></strong>
+                        </p>
+                        <p>Please complete your routine today to stay consistent.</p>
+                    </div>
+                    <p style="margin-top:15px;">
+                        If you don't want to lose your challenge streak or restart the challenge,
+                        please ⏰ Update your routine before <strong>10:00 PM today</strong> to keep your streak alive!.
+                    </p>
+                    <p>
+                        Stay consistent 💪
+                    </p>
+                    <br/>
+                    <p>
+                        Best Regards,<br/>
+                        Your Team
+                    </p>
+                </div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang or object.user_id.lang or user.lang }}</field>
+            <field name="report_template_ids" eval="[]"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_routine_missed" model="mail.template">
+            <field name="name">Challenge Missed: Remember Send by Email</field>
+            <field name="model_id" ref="model_daily_routine_checker"/>
+            <field name="subject">You missed a day in  – Let’s get back on track!</field>
+            <!-- <field name="description">Sent to the customers when orders are delivered, if the setting is enabled</field> -->
+            <field name="body_html" type="html">
+                <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
+            
+                    <p>Hello <t t-out="object.name or ''"></t>,<br/><br/></p>
+                    <p>
+                        It looks like you missed a day in your challenge 
+                        <strong><t t-out="object.name"></t></strong>.
+                    </p>
+
+                    <p>
+                        <strong>Current Streak:</strong> <t t-out="object.current_streak"></t> days<br/>
+                        <strong>Missed Count:</strong> <t t-out="object.missed_streak"></t> days<br/>
+                        <strong>Challenge Duration:</strong> <t t-out="object.no_of_days_challenge"></t> days
+                    </p>
+
+                    <p style="margin-top: 15px;">
+                        Don’t worry — progress is built step by step. 
+                        Missing one day doesn’t erase your commitment.
+                    </p>
+
+                    <p>
+                        👉 Take action today and restart your momentum!
+                    </p>
+
+                    <div style="margin: 20px 0;">
+                        <a t-att-href="'/web#id=%s&amp;model=daily.routine.checker&amp;view_type=form' % object.id"
+                        style="background-color: #875A7B;
+                                color: white;
+                                padding: 10px 18px;
+                                text-decoration: none;
+                                border-radius: 5px;">
+                            View Challenge
+                        </a>
+                    </div>
+
+                    <p>
+                        Stay consistent,<br/>
+                        <strong><t t-out="user.name or ''"></t></strong>
+                    </p>
+                    <br/><br/>
+                    Please find your delivery order attached for more details.<br/><br/>
+                    Thank you,
+                    <t t-if="user.signature">
+                        <br />
+                        <div>--<br/><t t-out="user.signature or ''">Manoj Parmar</t></div>
+                    </t>
+                </div>
+            </field>
+            <field name="report_template_ids" eval="[]"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>
