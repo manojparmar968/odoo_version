@@ -11,10 +11,11 @@
     "depends": ['base', 'mail', 'contacts' ,'hr'],
     "data": [
         'security/res_groups.xml',
+        'security/mail_automation_security.xml',
+        'security/rec_rule_policy_security.xml',
         "security/ir.model.access.csv",
         'security/ir_rules.xml',
         
-        'security/ir_rules.xml',
         'data/mail_template_data.xml',
         
         "views/daily_routine_checker_line_view.xml",
@@ -22,6 +23,8 @@
         "views/mail_automation_view.xml",
         "views/topic_view.xml",
         "views/odoo_practise_view.xml",
+        "views/interview_view.xml",
+        "views/res_partner_view.xml",
         "views/menu_view.xml",
         # "report/.xml",
         'data/ir_cron.xml',

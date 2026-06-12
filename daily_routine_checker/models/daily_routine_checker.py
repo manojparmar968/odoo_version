@@ -27,6 +27,7 @@ class DailyRoutineChecker(models.Model):
     active = fields.Boolean(default=True, help="Set active to false to hide the record without removing it.")
     routine_line_ids = fields.One2many('daily.routine.checker.line', 'daily_routine_checker_id', string='Routine Check')
     odoo_practise_line_ids = fields.One2many('odoo.practise', 'daily_routine_checker_id', string='Odoo Practise')
+    interview_line_ids = fields.One2many('interview', 'daily_routine_checker_id', string='interview')
     current_streak = fields.Integer(default=0, readonly=True, store=True)
     streak_updated = fields.Boolean(default=False, readonly=True, store=True)
     missed_streak = fields.Integer(default=0, readonly=True, store=True, tracking=True)

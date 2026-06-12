@@ -3,3 +3,8 @@ from . import daily_routine_checker_line
 from . import automation_mail
 from . import topic
 from . import odoo_practise
+from . import interview
+from . import res_partner
+from . import res_users_doc_upload
+from . import ir_attachment
+from . import rec_rule_policy

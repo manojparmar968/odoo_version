@@ -7,10 +7,18 @@
 
     <menuitem id="daily_routine_root_menu" name="Daily Routine" parent="routine_root_menu"/>
     <menuitem id="daily_routine_checker_model_action_menu" name="Daily Routine Checker" parent="daily_routine_root_menu" action="daily_routine_checker_action"/>
+    <menuitem id="menu_contacts" name="Contacts" parent="daily_routine_root_menu"/>
+        <menuitem id="res_partner_contacts_menu" name="Contacts"
+            action="contacts.action_contacts" parent="menu_contacts"/>
 
     <menuitem id="daily_routine_mail_root_menu" name="Automation" parent="routine_root_menu"/>
     <menuitem id="daily_routine_checker_mail_automation_model_action_menu" name="Mail Automation" parent="daily_routine_mail_root_menu" action="mail_automation_action"/>
 
+    <menuitem id="configuration_root_menu" name="Configuration" parent="routine_root_menu"/>
+    <menuitem id="interview_model_action_menu" name="Interview" parent="configuration_root_menu" action="interview_action"/>
+    <menuitem id="topic_model_action_menu" name="Topic" parent="configuration_root_menu" action="topic_action"/>
+    <menuitem id="rec_rule_model_action_menu" name="Rec Rule" parent="configuration_root_menu" action="rec_rule_policy_action"/>
+    
     <menuitem id="settings_root_menu" name="Settings" parent="routine_root_menu"/>
-    <menuitem id="topic_model_action_menu" name="Topic" parent="settings_root_menu" action="topic_action"/>
+    <menuitem id="interview_file_upload_model_action_menu" name="File Upload" parent="settings_root_menu" action="interview_action_file_upload"/>
 </odoo>

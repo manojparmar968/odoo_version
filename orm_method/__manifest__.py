@@ -1,0 +1,20 @@
+{
+    "name": "ORM Method",
+    "version": '19.0.0',
+    "category": "other/",
+    "license": "AGPL-3",
+    "summary": "",
+    "author": "Manoj Parmar",
+    "maintainers": ["Manoj Parmar"],
+    "website": "www.abc.com",
+    "depends": ['base', 'mail', 'purchase','sale_management'],
+    "data": [
+        # "security/ir.model.access.csv",
+        # "views/.xml",
+        # "report/.xml",
+        # "data/multiple_cron.xml",
+    ],
+    "installable": True,
+    'auto_install': False,
+    "application": True,
+}

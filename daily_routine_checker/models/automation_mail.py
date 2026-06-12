@@ -15,3 +15,4 @@ class MailAutomation(models.Model):
     contact_ids = fields.Many2many('res.partner', string="Contacts")
     state = fields.Selection(routine)
     active = fields.Boolean('Active', default=True, help="If unchecked, it will allow you to hide removing it.", tracking=True)
+    admin = fields.Char(string="Admin", help="Only Admin can see this field")

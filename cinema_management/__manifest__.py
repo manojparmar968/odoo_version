@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+{
+    'name': "Cinema Management",
+    'summary': "Manages the logistic and sales of a multiple movie theaters",
+    'author': "Alex Esteves",
+    'version': '19.0.0.1',
+    "category": "Movies",
+    "license": "AGPL-3",
+    'depends': ['base', 'sale'],
+    'data': [
+        'security/res_groups.xml',
+        'security/ir.model.access.csv',
+        'security/cinema_manager_security.xml',
+        'views/movie_theater_views.xml',
+        'views/theater_room_views.xml',
+        'views/movie_showing_views.xml',
+        'views/cinema_movie_views.xml',
+        'views/customer_views.xml',
+        'views/movie_review_views.xml',
+        'views/res_config_settings_views.xml',
+        'data/ir_actions.xml',
+    ],
+    "installable": True,
+    "auto_install": False,
+}

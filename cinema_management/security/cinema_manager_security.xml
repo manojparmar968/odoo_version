@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="present_movie_showings_rule" model="ir.rule">
+        <field name="name">Present Movie Showing</field>
+        <field name="model_id" ref="model_movie_showing" />
+        <field name="domain_force">[('is_past','=',False)]</field>
+        <field name="groups" eval="[(4, ref('cinema_management.cinema_manager_user_group'))]"/>
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+    <record id="movie_theater_comapny_rule" model="ir.rule">
+        <field name="name">Movie Theater Companies</field>
+        <field name="model_id" ref="model_movie_theater" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

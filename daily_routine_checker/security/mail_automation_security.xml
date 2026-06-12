@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_automation_category" model="ir.module.category">
+        <field name="name">Mail Automation</field>
+    </record>
+
+    <record id="mail_automation_res_groups_privilege" model="res.groups.privilege">
+        <field name="name">Mail Automation Privileges</field>
+        <field name="category_id" ref="daily_routine_checker.mail_automation_category"/>
+        <field name="sequence">10</field>
+        <field name="description">Using this group you can allow user to access below rights.
+            1) Readonly Access
+            2) All documents access.
+            3) Administrator
+        </field>
+    </record>
+
+    <record id="mail_automation_user" model="res.groups">
+        <field name="name">MAnoj User</field>
+        <field name="privilege_id" ref="daily_routine_checker.mail_automation_res_groups_privilege"/>
+    </record>
+    <record id="mail_automation_manager" model="res.groups">
+        <field name="name">Manoj Manager</field>
+        <field name="privilege_id" ref="daily_routine_checker.mail_automation_res_groups_privilege"/>
+        <field name="implied_ids" eval="[(4, ref('daily_routine_checker.mail_automation_user'))]"/>
+    </record>
+    <record id="mail_automation_admin" model="res.groups">
+        <field name="name">Manoj Administrator</field>
+        <field name="privilege_id" ref="daily_routine_checker.mail_automation_res_groups_privilege"/>
+        <field name="implied_ids" eval="[(4, ref('daily_routine_checker.mail_automation_manager'))]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    
+</odoo>

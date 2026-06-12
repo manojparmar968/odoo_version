@@ -24,9 +24,11 @@ class OdooPractise(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Odoo Practise"
 
+    date = fields.Date(string="Date", readonly=True, store=True, default=fields.Date.today())
     topic = fields.Selection(topic)
     odoo_state = fields.Selection(odoo)
     aws_state = fields.Selection(aws)
+    status = fields.Selection([('pending', 'Pending'),('completed', 'Completed')], default='pending')
     topic_name = fields.Char(string="Topic Name")
     functional = fields.Boolean()
     topic_id = fields.Many2one('topic')

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_inherit_form_view" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@name='contact_addresses']" position="after">
+               <page name="user_document" string="User Document's" autofocus="autofocus">
+                    <field name="partner_users_doc_line" widget="one2many" mode="list">
+                        <list string="User Doc Images" editable="bottom">
+                            <field name="partner_doc_id" column_invisible="1"/>
+                            <field name="doc_type"/>
+                            <field name="file_type"/>
+                            <field name="doc_image_1920" widget="image" invisible="file_type != 'image'" 
+                                options="{'size': [50, 50]}"/>
+                            <field name="img_download" filename="name" widget="binary" readonly="1"/>
+                            <field name="file_name" column_invisible="1" invisible="1"/>
+                            <field name="file" filename="file_name" invisible="file_type != 'pdf'"/>
+                            <field name="pdf_download" filename="file_name" widget="binary" readonly="1"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="interview_list_view" model="ir.ui.view">
+        <field name="name">interview.list</field>
+        <field name="model">interview</field>
+        <field name="arch" type="xml">
+            <list string="INterview">
+                <field name="date"/>
+                <field name="company_name"/>
+            </list>
+        </field>
+    </record>
+    <record id="interview_form_view" model="ir.ui.view">
+        <field name="name">interview.form</field>
+        <field name="model">interview</field>
+        <field name="arch" type="xml">
+            <form string="Interview">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            
+                        </group>
+                        <group>
+                            <field name="company_name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="detail_data"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="interview_action" model="ir.actions.act_window">
+        <field name="name">interview</field>
+        <field name="res_model">interview</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- File Upload View -->
+    <record id="interview_list_view_file_upload" model="ir.ui.view">
+        <field name="name">interview.list</field>
+        <field name="model">interview</field>
+        <field name="arch" type="xml">
+            <list string="File Upload">
+                <field name="binary_fields"/>
+                <field name="binary_field"/>
+            </list>
+        </field>
+    </record>
+    <record id="interview_form_view_file_upload" model="ir.ui.view">
+        <field name="name">interview.form</field>
+        <field name="model">interview</field>
+        <field name="arch" type="xml">
+            <form string="Interview File Upload">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="binary_fields" widget="many2many_binary"/>
+                            
+                        </group>
+                        <group>
+                            <field name="binary_field" filename="binary_file_name"/>
+                            <field name="binary_file_name" invisible="1"/>
+                        </group>
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="interview_action_file_upload" model="ir.actions.act_window">
+        <field name="name">interview File Upload</field>
+        <field name="res_model">interview</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('interview_list_view_file_upload')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('interview_form_view_file_upload')})]"
+        />
+    </record>
+</odoo>

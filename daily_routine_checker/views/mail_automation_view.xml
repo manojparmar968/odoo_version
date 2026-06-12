@@ -8,6 +8,7 @@
                 <field name="name"/>
                 <field name="state"/>
                 <field name="contact_ids"/>
+                <field name="admin" groups="daily_routine_checker.mail_automation_admin"/>
             </list>
         </field>
     </record>
@@ -25,7 +26,8 @@
                             <field name="state"/>
                         </group>
                         <group>
-                            <field name="contact_ids"/>
+                            <field name="contact_ids" groups="daily_routine_checker.mail_automation_manager"/>
+                            <field name="admin" groups="daily_routine_checker.mail_automation_admin"/>
                         </group>
                     </group>
                 </sheet>
@@ -36,6 +38,12 @@
     <record id="mail_automation_action" model="ir.actions.act_window">
         <field name="name">Mail Automation</field>
         <field name="res_model">mail.automation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="rec_rule_policy_action" model="ir.actions.act_window">
+        <field name="name">Access Right Testing</field>
+        <field name="res_model">rec.rule.policy</field>
         <field name="view_mode">list,form</field>
     </record>
 </odoo>

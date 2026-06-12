@@ -1,4 +1,17 @@
+Odoo 19 community Apps
+    https://github.com/OCA/web/tree/19.0
+
+odoo 19 themes
+    https://github.com/odoo/design-themes
+
 ./odoo-bin -d your_database_name --clear-cache
+
+/web/login
+/web/database/selector
+web/database/manager
+
+To Hide web/database/selector
+    .conf --no-database-list
 
 
 Mc/linux

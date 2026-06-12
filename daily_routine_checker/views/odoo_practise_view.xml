@@ -5,9 +5,13 @@
         <field name="model">odoo.practise</field>
         <field name="arch" type="xml">
             <list string="Odoo Practise" delete="false">
+                <field name="date"/>
                 <field name="topic"/>
                 <field name="odoo_state"/>
+                <field name="aws_state"/>
+                <field name="status"/>
                 <field name="functional"/>
+                <field name="topic_name"/>
             </list>
         </field>
     </record>
@@ -21,15 +25,17 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="date"/>
                             <field name="topic"/>
-                            <field name="odoo_state"/>
-                            <field name="aws_state"/>
-                            <field name="functional"/>
-                            <field name="topic_id" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="odoo_state" invisible="topic != 'odoo'"/>
+                            <field name="aws_state" invisible="topic != 'aws'"/>
+                            <field name="status"/>
+                            <field name="functional" invisible="topic != 'odoo'"/>
+                            <field name="topic_id" options="{'no_open': True, 'no_create': True}" invisible="topic != 'pending'"/>
                             <field name="topic_name"/>
                         </group>
                         <group>
-                            <field name="functional"/>
+                            
                         </group>
                     </group>
                 </sheet>

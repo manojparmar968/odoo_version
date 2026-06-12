@@ -54,6 +54,7 @@
                             <field name="odoo_practise_line_ids" />
                         </page>
                         <page string="Interview">
+                            <field name="interview_line_ids" />
                         </page>
                     </notebook>
                 </sheet>
@@ -70,9 +71,10 @@
                 <templates>
                     <t t-name="card">
                         <field name="name" class="fw-bolder"/>
-                        <!-- <div>
-                            Mobile Number: <field name="mobile"/>
-                        </div> -->
+                        <!-- <field name=""/> -->
+                        <div>
+                            State: <field name="state"/>
+                        </div>
                         <!-- <div>
                             <strong>Expected Price: </strong><field name="expected_price"/>
                         </div> -->
