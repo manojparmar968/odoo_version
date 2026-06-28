@@ -17,7 +17,7 @@ class CinemaManagerController(Controller):
         showings = [{'movie': showing.movie_id.name} for showing in showings]
         return request.make_response(json.dumps(showings))
     
-    @route(['/cinema/movie_theaters/'], type='json', auth='public', methods=['POST'], csrf='false')
+    @route(['/cinema/movie_theaters/'], type='jsonrpc', auth='public', methods=['POST'], csrf='false')
     def fetch_movie_theaters(self, **kwargs):
         self.validate_request(kwargs.get('token', ""))
         domain = []
