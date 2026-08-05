@@ -35,25 +35,63 @@
                             <field name="description"/>
                             <field name="challenge_accept_datetime"/>
                             <field name="no_of_days_challenge" readonly="no_of_days_challenge != False" force_save="1"/> 
+                            <field name="manager_id" options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"/>
+                            <field name="token"/>
                         </group>
                         <group>
                             <field name="missed_streak"/>
                             <field name="missed_streak_date"/>
                             <field name="current_streak"/>
                             <field name="progress" widget="progressbar"/>
-                            <field name="user_id"/>
+                            <field name="user_id" options="{'no_open': True, 'no_create': True}"/>
                             <field name="partner_id"/>
                             <field name="employee_id"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Daily Routine Mark">
-                            <field name="routine_line_ids" />
+                        <page string="Daily Routine Mark" name="daily_routine_mark">
+                            <group>
+                                <field name="routine_line_ids" nolabel="1"/>
+                            </group>
+                            <group></group>
                         </page>
-                        <page string="Odoo Practise">
+                        <page string="Odoo Practise" name="odoo_practise">
                             <field name="odoo_practise_line_ids" />
                         </page>
-                        <page string="Interview">
+                        <page string="Shift" name="shift">
+                            <!-- <group> -->
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <separator string="Shift A 9AM : 3PM" class="text-center"/>
+                                        <field name="shift_first_ids" nolabel="1">
+                                            <list editable="bottom" delete="0">
+                                                <field name="shift_start"/>
+                                                <field name="shift_end"/>
+                                            </list>
+                                        </field>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <separator string="Shift B 3PM : 6PM" class="text-center"/>
+                                        <field name="shift_second_ids" nolabel="1">
+                                            <list editable="bottom" delete="0">
+                                                <field name="shift_start"/>
+                                                <field name="shift_end"/>
+                                            </list>
+                                        </field>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <separator string="Shift C 6PM : 9PM" class="text-center"/>
+                                        <field name="shift_third_ids" nolabel="1">
+                                            <list editable="bottom" delete="0">
+                                                <field name="shift_start"/>
+                                                <field name="shift_end"/>
+                                            </list>
+                                        </field>
+                                    </div>
+                                </div>
+                            <!-- </group> -->
+                        </page>
+                        <page string="Interview" name="interview">
                             <field name="interview_line_ids" />
                         </page>
                     </notebook>
@@ -70,14 +108,22 @@
             <kanban >
                 <templates>
                     <t t-name="card">
+                        <strong class="text-center"><field name="user_id"/></strong>
                         <field name="name" class="fw-bolder"/>
                         <!-- <field name=""/> -->
                         <div>
-                            State: <field name="state"/>
+                            <strong>State: </strong><field name="state"/>
                         </div>
-                        <!-- <div>
-                            <strong>Expected Price: </strong><field name="expected_price"/>
-                        </div> -->
+                        <div>
+                            <strong>Manager: </strong><field name="manager_id"/>
+                        </div>
+                        <div>
+                            <strong>Current Streak: </strong><field name="current_streak"/>
+                            <p> Days Streak</p>
+                        </div>
+                        <div>
+                            <strong>Missed Streak: </strong><field name="missed_streak"/>
+                        </div>
                         <!-- <div invisible="state != 'offer_received'">
                             Best Price: <field name="best_price"/>
                         </div> -->
@@ -88,7 +134,7 @@
         </field>
     </record>
     <record id="daily_routine_checker_graph_view" model="ir.ui.view">
-        <field name="name">daily.routine.checker</field>
+        <field name="name">daily.routine.checker.graph</field>
         <field name="model">daily.routine.checker</field>
         <field name="arch" type="xml">
             <graph string="Challenge Performance" type="bar">
@@ -97,10 +143,22 @@
             </graph>
         </field>
     </record>
+    <record id="daily_routine_checker_search" model="ir.ui.view">
+        <field name="name">daily.routine.checker.search</field>
+        <field name="model">daily.routine.checker</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <field name="state"/>
+                <filter string="State" name="running_state" domain="[('state', '=', 'running')]"/>
+            </search>
+        </field>
+    </record>
     <record id="daily_routine_checker_action" model="ir.actions.act_window">
         <field name="name">Daily Routine Checker</field>
         <field name="res_model">daily.routine.checker</field>
         <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="daily_routine_checker.daily_routine_checker_search"/>
+        <field name="context">{'search_default_running_state':1}</field>
         <field name="help" type="html">
           <p>Create a new Routine</p>
         </field>

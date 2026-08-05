@@ -4,6 +4,8 @@ Odoo 19 community Apps
 odoo 19 themes
     https://github.com/odoo/design-themes
 
+pip install -r requirements.txt
+
 ./odoo-bin -d your_database_name --clear-cache
 
 /web/login

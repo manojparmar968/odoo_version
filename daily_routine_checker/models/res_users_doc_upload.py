@@ -16,6 +16,7 @@ doc=[
 
 class UsersImagePdfUpload(models.Model):
     _name = 'res.users.doc.upload'
+    _description = "User Document Upload"
 
     partner_doc_id = fields.Many2one('res.partner', string='Customer Name', required=True, ondelete='cascade', index=True, copy=False)
     doc_image_1920 = fields.Image(string='Document Image')

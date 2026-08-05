@@ -1,6 +1,10 @@
 # sphinx build directories
 _build/
 
+.env
+*.env
+.env.*
+
 # dotfiles
 .*
 !.gitignore

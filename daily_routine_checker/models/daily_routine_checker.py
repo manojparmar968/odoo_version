@@ -26,6 +26,9 @@ class DailyRoutineChecker(models.Model):
     no_of_days_challenge = fields.Selection(no_of_days, string="Number OF Days Challenge")
     active = fields.Boolean(default=True, help="Set active to false to hide the record without removing it.")
     routine_line_ids = fields.One2many('daily.routine.checker.line', 'daily_routine_checker_id', string='Routine Check')
+    shift_first_ids = fields.One2many('daily.routine.shift.first', 'daily_routine_checker_id', string='First Shift')
+    shift_second_ids = fields.One2many('daily.routine.shift.second', 'daily_routine_checker_id', string='Second Shift')
+    shift_third_ids = fields.One2many('daily.routine.shift.third', 'daily_routine_checker_id', string='Third Shift')
     odoo_practise_line_ids = fields.One2many('odoo.practise', 'daily_routine_checker_id', string='Odoo Practise')
     interview_line_ids = fields.One2many('interview', 'daily_routine_checker_id', string='interview')
     current_streak = fields.Integer(default=0, readonly=True, store=True)
@@ -37,7 +40,8 @@ class DailyRoutineChecker(models.Model):
         ('completed', 'Completed'),
         ('fail', 'Fail'),
     ], default='running')
-    user_id = fields.Many2one('res.users', default=lambda self: self.env.user, required=True)
+    user_id = fields.Many2one('res.users', "User", default=lambda self: self.env.user, domain="[('share', '=', False)]", readonly=True, required=True)
+    manager_id = fields.Many2one('res.users', "Manager", domain="[('share', '=', False)]", required=True)
     partner_id = fields.Many2one('res.partner')
     employee_id = fields.Many2one('hr.employee')
     progress = fields.Float(compute="_compute_progress", store=True)
