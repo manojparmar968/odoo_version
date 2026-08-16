@@ -149,7 +149,7 @@
         <field name="arch" type="xml">
             <search string="Search">
                 <field name="state"/>
-                <filter string="State" name="running_state" domain="[('state', '=', 'running')]"/>
+                <filter string="Running" name="running_state" domain="[('state', '=', 'running')]"/>
             </search>
         </field>
     </record>
